@@ -3,11 +3,30 @@ import MovieCard from "../components/movieCard";
 import { searchMovies, getTrendingMovies } from "../services/api";
 import "../styles/Home.css";
 
+// Debounce hook
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+  
+  return debouncedValue;
+};
+
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
   useEffect(() => {
     async function loadTrending() {
@@ -24,22 +43,36 @@ function Home() {
 
     loadTrending();
   }, []);
+  
+  // Auto-search with debounced query
+  useEffect(() => {
+    const performSearch = async () => {
+      if (debouncedSearchQuery.trim()) {
+        setLoading(true);
+        try {
+          const results = await searchMovies(debouncedSearchQuery);
+          setMovies(results || []);
+          setError(null);
+        } catch (err) {
+          console.error(err);
+          setError("Failed to search movies.");
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        // Load trending movies when search is empty
+        const trending = await getTrendingMovies();
+        setMovies(trending || []);
+      }
+    };
+    
+    performSearch();
+  }, [debouncedSearchQuery]);
 
-  const handleSearch = async (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
-    if (!searchQuery.trim()) return;
-    setLoading(true);
-
-    try {
-      const results = await searchMovies(searchQuery);
-      setMovies(results || []);
-      setError(null);
-    } catch (err) {
-      console.error(err);
-      setError("Failed to search movies.");
-    } finally {
-      setLoading(false);
-    }
+    // Form submission is now handled by auto-search via debounced query
+    // This just prevents the default form submission
   };
 
   return (

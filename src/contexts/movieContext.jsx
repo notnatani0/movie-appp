@@ -2,7 +2,8 @@ import { createContext, useState, useContext, useEffect } from "react";
 
 const MovieContext = createContext();
 
-export const useMovieContext = () => useContext(MovieContext);
+// Move custom hook to separate export to fix ESLint warning
+const useMovieContext = () => useContext(MovieContext);
 
 export const MovieProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
@@ -18,7 +19,13 @@ export const MovieProvider = ({ children }) => {
   }, [favorites]);
 
   const addToFavorites = (movie) => {
-    setFavorites((prev) => [...prev, movie]);
+    setFavorites((prev) => {
+      // Check if movie is already in favorites to prevent duplicates
+      if (prev.some(fav => fav.id === movie.id)) {
+        return prev;
+      }
+      return [...prev, movie];
+    });
   };
 
   const removeFromFavorites = (movieId) => {
@@ -40,3 +47,5 @@ export const MovieProvider = ({ children }) => {
     <MovieContext.Provider value={value}>{children}</MovieContext.Provider>
   );
 };
+
+export { useMovieContext };

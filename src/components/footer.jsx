@@ -15,7 +15,7 @@ function Footer() {
       </div>
 
       <div className="footer-meta">
-        <p>© {new Date().getFullYear()} Cinemora. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} WatchVault. All rights reserved.</p>
         <div className="footer-icons">
           <a
             href="https://github.com/yourusername"

@@ -8,26 +8,28 @@
   text-align: center;
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .favorites-empty {
   text-align: center;
   padding: 3rem 2rem;
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: var(--card-bg);
   border-radius: 12px;
   margin: 2rem auto;
   max-width: 600px;
+  box-shadow: var(--shadow-light);
 }
 
 .favorites-empty h3 {
   font-size: 1.6rem;
-  color: #e50914;
+  color: var(--primary-color);
   margin-bottom: 1rem;
 }
 
 .favorites-empty p {
-  color: #bbb;
+  color: var(--text-color);
+  opacity: 0.7;
   font-size: 1rem;
   line-height: 1.5;
   margin: 0.5rem 0;

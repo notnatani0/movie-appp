@@ -2,12 +2,12 @@
 /node_modules
 /.pnp
 .pnp.js
-services/api.js
 # Vite
 dist
 .vite
 
 # local env files
+.env
 .env*
 !.env.example
 
