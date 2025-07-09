@@ -1,5 +1,9 @@
 # WatchVault v2 - Movie Watchlist App
 
+> **Version 2.0** - Complete rewrite with user authentication and advanced watchlist management
+
+*Previously known as Cinemora - now evolved into a comprehensive movie tracking platform*
+
 A modern, minimal React-based movie watchlist application that helps you track your movie journey. Built with React 19, Vite, and the TMDB API.
 
 ## ✨ Features
@@ -47,8 +51,8 @@ A modern, minimal React-based movie watchlist application that helps you track y
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/watchvault.git
-   cd watchvault
+   git clone https://github.com/notnatani0/movie-appp.git
+   cd movie-appp
    ```
 
 2. **Install dependencies**
@@ -174,3 +178,64 @@ This project is licensed under the MIT License.
 ---
 
 **WatchVault v2** - Track your movie journey! 🎬✨
+=======
+5. Open the application in your browser at `http://localhost:3000`.
+
+### Build for Production
+
+To build the project for production, run:
+```bash
+npm run build
+```
+The output will be in the `dist` directory.
+
+### Linting and Formatting
+
+To lint and format your code, run:
+```bash
+npm run lint
+```
+
+## Folder Structure
+
+```
+src/
+├── components/      # Reusable UI components
+├── contexts/        # Context API for state management
+├── pages/           # Application pages (Home, Favorites)
+├── services/        # API service functions
+├── styles/          # CSS styles
+├── App.jsx          # Main application component
+├── main.jsx         # Entry point
+```
+
+## API Integration
+
+The application uses the TMDB API to fetch movie data. Key functions:
+
+- `getTrendingMovies`: Fetches popular movies.
+- `searchMovies`: Searches for movies based on a query.
+
+All API functions are defined in `src/services/api.js`.
+
+## Disclaimer
+
+This project uses TMDB APIs for educational purposes only and is not endorsed or certified by TMDB.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Credits
+
+- **TMDB API**: [The Movie Database](https://www.themoviedb.org/)
+- **Icons**: [Lucide Icons](https://lucide.dev/)
+
+## Contributing
+
+Feel free to fork the repository and submit pull requests. For major changes, please open an issue first to discuss the changes.
+
+## Contact
+
+For any inquiries or questions, you can reach out via [your email or GitHub profile link].
+>>>>>>> 6937b85b1a3ea91bb7831eb43c91c00eeeeebd87
