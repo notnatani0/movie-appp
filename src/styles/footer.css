@@ -6,6 +6,7 @@
   color: var(--text-color);
   background-color: var(--card-bg);
   opacity: 0.8;
+  color: white;
 }
 
 .footer-content {

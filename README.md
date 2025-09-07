@@ -1,241 +1,124 @@
-# WatchVault v2 - Movie Watchlist App
+# 🎬 MyMovieList
 
-> **Version 2.0** - Complete rewrite with user authentication and advanced watchlist management
+A modern movie discovery app that helps you find movies you'll enjoy without all the noise. Built with React and powered by The Movie Database (TMDB) API, featuring real-time search, trending movies, and search analytics.
 
-*Previously known as Cinemora - now evolved into a comprehensive movie tracking platform*
+## ✨ Technologies
 
-A modern, minimal React-based movie watchlist application that helps you track your movie journey. Built with React 19, Vite, and the TMDB API.
+- `React 19`
+- `Vite`
+- `Tailwind CSS`
+- `Appwrite` (Backend & Database)
+- `The Movie Database (TMDB) API`
+- `React Use` (Custom hooks)
 
-## ✨ Features
+## 🚀 Features
 
-### 🎬 Movie Discovery
-- Search movies by title with real-time results
-- Browse trending/popular movies
-- High-quality movie posters and details
-- Responsive grid layout
+- **Real-time Search**: Debounced search with instant results as you type
+- **Trending Movies**: Displays top 5 most searched movies from your database
+- **Movie Discovery**: Browse popular movies when no search is active
+- **Search Analytics**: Tracks search terms and counts using Appwrite database
+- **Responsive Design**: Beautiful UI that works on all screen sizes
+- **Movie Details**: Shows ratings, language, release year, and posters
+- **Error Handling**: Graceful error states and loading indicators
 
-### 📚 Personal Watchlist Management
-- **Want to Watch** - Movies you plan to watch
-- **Currently Watching** - Movies you're actively watching
-- **Watched** - Movies you've completed
-- Personal statistics and progress tracking
+## 📍 The Process
 
-### 🔐 User Authentication
-- Secure sign up and sign in
-- Persistent user sessions
-- User-specific watchlist data
-- Protected routes
+The movie discovery app, built with React and Vite, aims to enhance user experience beyond basic search by learning user behavior and displaying trending searches. It utilizes the TMDB API for movie data and Appwrite for backend analytics. Key features include debounced search for improved performance and a dedicated trending section showcasing popular searches. The user interface is designed to be clean and distraction-free, prioritizing the movie discovery process.
 
-### 🎨 Modern Design
-- Clean, minimal interface
-- Dark/Light theme support
-- Smooth animations and transitions
-- Mobile-responsive design
-- Glassmorphism effects
+- NOTE: I built this project as a practice project to get a better understanding of ReactJS concepts, and I'll add features like a favorite button and setting the category to something like watching, going to watch, or watched.
 
-## 🚀 Live Demo
+## 🚦 Running the Project
 
-[View Live App](https://your-vercel-url.vercel.app)
+1. Clone the repository
 
-## 🛠️ Tech Stack
-
-- **Frontend**: React 19, Vite 6
-- **Routing**: React Router DOM
-- **Styling**: CSS3 with Custom Properties
-- **Icons**: Lucide React
-- **API**: TMDB (The Movie Database)
-- **Storage**: localStorage for user data
-- **Deployment**: Vercel
-
-## 📦 Installation
-
-1. **Clone the repository**
    ```bash
    git clone https://github.com/notnatani0/movie-appp.git
-   cd movie-appp
+   cd Movie-appp
    ```
 
-2. **Install dependencies**
+2. Install dependencies
+
    ```bash
    npm install
    ```
 
-3. **Environment setup**
-   ```bash
-   cp .env.example .env
-   ```
-   Add your TMDB API key to the `.env` file:
-   ```
-   VITE_TMDB_API_KEY=your_api_key_here
+3. Set up environment variables
+   Create a `.env` file in the root directory:
+
+   ```env
+   VITE_TMDB_API_KEY=your_tmdb_api_key
+   VITE_APPWRITE_PROJECT_ID=your_appwrite_project_id
+   VITE_APPWRITE_DATABASE_ID=your_appwrite_database_id
+   VITE_APPWRITE_COLLECTION_ID=your_appwrite_collection_id
    ```
 
-4. **Start development server**
+4. Run development server
+
    ```bash
    npm run dev
    ```
 
-5. **Build for production**
-   ```bash
-   npm run build
-   ```
+5. Open `http://localhost:5173` in your browser
 
-## 🔑 Getting TMDB API Key
+## 🔧 Setup Instructions
 
-1. Visit [TMDB](https://www.themoviedb.org/)
-2. Create an account
-3. Go to Settings > API
-4. Generate your API key
-5. Add it to your `.env` file
+### TMDB API Setup
 
-## 🎯 Usage
+1. Visit [TMDB](https://www.themoviedb.org/settings/api)
+2. Create an account and request an API key
+3. Add the API key to your `.env` file
 
-### Getting Started
-1. Open the app and sign up with your email
-2. Start searching for movies
-3. Add movies to your watchlist categories
-4. Track your movie-watching progress
+### Appwrite Setup
 
-### Watchlist Management
-- **Add movies**: Click the "+" button on any movie card
-- **Change status**: Use the dropdown to move movies between lists
-- **Remove movies**: Select "Remove" from the dropdown menu
-- **View statistics**: Check your progress on the watchlist page
+1. Create an [Appwrite](https://cloud.appwrite.io) account
+2. Create a new project
+3. Create a database and collection with these attributes:
+   - `searchTerm` (String)
+   - `count` (Integer)
+   - `movie_id` (Integer)
+   - `poster_url` (String)
+4. Add your localhost domain in Project Settings → Platforms
+5. Set collection permissions to allow read/write for your users
+6. Add the project details to your `.env` file
 
-## 🏗️ Project Structure
+## 📱 Preview
 
-```
-src/
-├── components/          # Reusable UI components
-│   ├── movieCard.jsx   # Movie card with watchlist controls
-│   ├── navBar.jsx      # Navigation with auth controls
-│   └── footer.jsx      # Footer component
-├── contexts/           # React context providers
-│   ├── UserContext.jsx      # User authentication
-│   ├── WatchlistContext.jsx # Watchlist management
-│   ├── movieContext.jsx     # Movie favorites (legacy)
-│   └── ThemeContext.jsx     # Theme management
-├── pages/              # Route components
-│   ├── Auth.jsx        # Sign in/Sign up
-│   ├── Home.jsx        # Movie discovery
-│   └── Watchlist.jsx   # Personal watchlist
-├── services/           # API services
-│   └── api.js          # TMDB API functions
-└── styles/             # CSS modules
-    ├── index.css       # Global styles & themes
-    ├── Auth.css        # Authentication styles
-    ├── movieCard.css   # Movie card styles
-    └── ...
-```
+The app features:
 
-## 🔧 Features in Detail
+- Hero section with search functionality
+- Trending movies carousel
+- Grid layout of movie cards with ratings and details
+- Smooth loading states and error handling
+- Responsive design for all devices
 
-### Authentication System
-- User registration and login
-- Session management with localStorage
-- Protected routes for authenticated users
-- Secure user data storage
+## 🛠️ Available Scripts
 
-### Watchlist System
-- Three categories: Want to Watch, Watching, Watched
-- Real-time status updates
-- Progress statistics
-- User-specific data persistence
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-### Movie Search
-- Debounced search for performance
-- Real-time search results
-- Trending movies on homepage
-- Movie details and posters
+## 📦 Dependencies
 
-### Theme System
-- Dark/Light mode toggle
-- Persistent theme preference
-- Smooth theme transitions
-- System preference detection
+- **React 19** - UI library
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **Appwrite** - Backend-as-a-Service
+- **React Use** - Collection of useful React hooks
+- **Lucide React** - Beautiful icons
 
-## 📱 Mobile Support
+## 🎯 Key Features Explained
 
-WatchVault is fully responsive and works seamlessly on:
-- Desktop computers
-- Tablets
-- Mobile phones
-- Various screen sizes
+- **Debounced Search**: Uses `react-use` debounce to prevent excessive API calls
+- **Search Analytics**: Every search is tracked in Appwrite database
+- **Trending Algorithm**: Shows movies based on search frequency
+- **Fallback Images**: Graceful handling of missing movie posters
+- **Performance Optimized**: Efficient API calls and state management
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Feel free to submit issues and enhancement requests!
 
 ## 📄 License
 
-This project is licensed under the MIT License.
-
-## 🙏 Acknowledgments
-
-- [TMDB](https://www.themoviedb.org/) for the movie data API
-- [Lucide React](https://lucide.dev/) for beautiful icons
-- [React](https://react.dev/) for the amazing framework
-
----
-
-**WatchVault v2** - Track your movie journey! 🎬✨
-=======
-5. Open the application in your browser at `http://localhost:3000`.
-
-### Build for Production
-
-To build the project for production, run:
-```bash
-npm run build
-```
-The output will be in the `dist` directory.
-
-### Linting and Formatting
-
-To lint and format your code, run:
-```bash
-npm run lint
-```
-
-## Folder Structure
-
-```
-src/
-├── components/      # Reusable UI components
-├── contexts/        # Context API for state management
-├── pages/           # Application pages (Home, Favorites)
-├── services/        # API service functions
-├── styles/          # CSS styles
-├── App.jsx          # Main application component
-├── main.jsx         # Entry point
-```
-
-## API Integration
-
-The application uses the TMDB API to fetch movie data. Key functions:
-
-- `getTrendingMovies`: Fetches popular movies.
-- `searchMovies`: Searches for movies based on a query.
-
-All API functions are defined in `src/services/api.js`.
-
-## Disclaimer
-
-This project uses TMDB APIs for educational purposes only and is not endorsed or certified by TMDB.
-
-## License
-
-This project is licensed under the MIT License.
-
-## Credits
-
-- **TMDB API**: [The Movie Database](https://www.themoviedb.org/)
-- **Icons**: [Lucide Icons](https://lucide.dev/)
-
-## Contributing
-
-Feel free to fork the repository and submit pull requests. For major changes, please open an issue first to discuss the changes.
-
-## Contact
-
-For any inquiries or questions, you can reach out via [your email or GitHub profile link].
->>>>>>> 6937b85b1a3ea91bb7831eb43c91c00eeeeebd87
+This project is open source and available under the [MIT License](LICENSE).
